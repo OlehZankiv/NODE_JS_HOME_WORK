@@ -1,4 +1,3 @@
-import fs from "fs/promises";
 import { Contact } from "../models/Contact.js";
 
 export const listContacts = () => Contact.find();
@@ -12,3 +11,6 @@ export const addContact = (body) => Contact.create(body);
 
 export const updateContact = (contactId, body) =>
   Contact.findByIdAndUpdate(contactId, body, { new: true });
+
+export const updateStatusContact = (contactId, body) =>
+  Contact.findByIdAndUpdate(contactId, { $set: body }, { new: true });
