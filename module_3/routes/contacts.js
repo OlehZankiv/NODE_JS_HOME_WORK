@@ -1,23 +1,23 @@
 import express from "express";
 import {
-  createContactController,
-  deleteContactController,
-  getContactContoller,
-  getContactsContoller,
-  updateContactController,
-  updateStatusContactController,
-} from "../controllers/contacts.js";
+  createContact,
+  deleteContact,
+  getContact,
+  getContacts,
+  updateContact,
+  updateStatusContact,
+} from "../controllers/contacts/index.js";
 
 export const router = express.Router();
 
-router.get("/", getContactsContoller);
+router.get("/", getContacts);
 
-router.get("/:contactId", getContactContoller);
+router.get("/:contactId", getContact);
 
-router.post("/", createContactController);
+router.post("/", createContact);
 
-router.put("/:contactId", updateContactController);
+router.put("/:contactId", updateContact);
 
-router.delete("/:contactId", deleteContactController);
+router.delete("/:contactId", deleteContact);
 
-router.patch("/:contactId/favorite", updateStatusContactController);
+router.patch("/:contactId/favorite", updateStatusContact);
