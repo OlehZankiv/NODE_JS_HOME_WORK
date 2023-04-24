@@ -1,8 +1,9 @@
 import express from "express";
 import logger from "morgan";
 import cors from "cors";
+import { responseMessageCreator } from "./utils/error.js";
 // ROUTERS
-import { router as contactsRouter } from "./routes/api/contacts.js";
+import { router as contactsRouter } from "./routes/contacts.js";
 
 export const app = express();
 
@@ -15,9 +16,10 @@ app.use(express.json());
 app.use("/api/contacts", contactsRouter);
 
 app.use((_, res) => {
-  res.status(404).json({ message: "Not found" });
+  res.status(404).json(responseMessageCreator("Not found"));
 });
 
 app.use((err, _, res) => {
-  res.status(500).json({ message: err.message });
+  console.error(err.stack);
+  res.status(500).json(responseMessageCreator(err.message));
 });
