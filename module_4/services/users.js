@@ -5,3 +5,5 @@ export const registerUser = async (body) => {
   newUser.setPassword(body.password);
   return newUser.save();
 };
+
+export const getUserByEmail = (email) => User.findOne({ email });

@@ -5,11 +5,11 @@ import {
   getUserByEmail as getUserByEmailService,
 } from "../../services/users.js";
 
-export const registerUser = async (req, res, next) => {
+export const loginUser = async (req, res, next) => {
   try {
     const { email, password } = req.body;
 
-    const validation = validateUser(newUser);
+    const validation = validateUser({ email, password });
 
     if (validation.error?.message)
       return res
@@ -18,14 +18,13 @@ export const registerUser = async (req, res, next) => {
 
     const user = await getUserByEmailService(email);
 
-    if (user)
-      return res.status(409).json(responseMessageCreator("Email in use"));
+    if (!user || !user.checkPassword(password))
+      return res.status(401).json(responseMessageCreator("Not authorized"));
 
-    const newUser = { email, password };
+    // const newUser = { email, password };
 
-    const createdUser = await registerUserService(newUser);
-
-    res.status(201).json(createdUser);
+    // const createdUser = await registerUserService(newUser);
+    res.status(200).json({ token: "", user });
   } catch (e) {
     console.error(e);
     next(e);
