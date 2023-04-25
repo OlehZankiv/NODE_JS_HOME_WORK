@@ -7,7 +7,6 @@ import {
   updateContact,
   updateStatusContact,
 } from "../controllers/contacts/index.js";
-import { jwtMiddleware } from "../middlewares/jwt.js";
 
 export const router = express.Router();
 
