@@ -7,3 +7,5 @@ export const registerUser = async (body) => {
 };
 
 export const getUserByEmail = (email) => User.findOne({ email });
+
+export const getUserById = (id) => User.findById(id);

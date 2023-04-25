@@ -25,7 +25,7 @@ export const registerUser = async (req, res, next) => {
 
     const createdUser = await registerUserService(newUser);
 
-    res.status(201).json(createdUser);
+    res.status(201).json({ createdUser });
   } catch (e) {
     console.error(e);
     next(e);

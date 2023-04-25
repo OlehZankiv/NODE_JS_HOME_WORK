@@ -7,17 +7,18 @@ import {
   updateContact,
   updateStatusContact,
 } from "../controllers/contacts/index.js";
+import { jwtMiddleware } from "../middlewares/jwt.js";
 
 export const router = express.Router();
 
-router.get("/", getContacts);
+router.get("/", jwtMiddleware, getContacts);
 
-router.get("/:contactId", getContact);
+router.get("/:contactId", jwtMiddleware, getContact);
 
-router.post("/", createContact);
+router.post("/", jwtMiddleware, createContact);
 
-router.put("/:contactId", updateContact);
+router.put("/:contactId", jwtMiddleware, updateContact);
 
-router.delete("/:contactId", deleteContact);
+router.delete("/:contactId", jwtMiddleware, deleteContact);
 
-router.patch("/:contactId/favorite", updateStatusContact);
+router.patch("/:contactId/favorite", jwtMiddleware, updateStatusContact);
