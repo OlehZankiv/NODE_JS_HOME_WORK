@@ -1,6 +1,18 @@
 import { Contact } from "../models/index.js";
 
-export const listContacts = () => Contact.find();
+export const listContacts = (userId, pagination) => {
+  if (!userId) {
+    throw new Error("Unauthorized");
+  }
+
+  const users = Contact.find({ owner: userId });
+
+  if (!pagination.page || !pagination.limit) return users;
+
+  const { page, limit } = pagination;
+
+  return users.skip((page - 1) * limit).limit(limit);
+};
 
 export const getContactById = (contactId) => Contact.findById(contactId);
 
