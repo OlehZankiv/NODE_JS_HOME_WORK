@@ -8,6 +8,7 @@ const secretKey = process.env.TOKEN_SECRET;
 
 export const jwtMiddleware = (req, res, next) => {
   let token = req.headers.authorization;
+
   token = token.startsWith("Bearer ") ? token.slice(7) : token;
 
   jwt.verify(token, secretKey, async (err, decoded) => {

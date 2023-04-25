@@ -11,14 +11,14 @@ import { jwtMiddleware } from "../middlewares/jwt.js";
 
 export const router = express.Router();
 
-router.get("/", jwtMiddleware, getContacts);
+router.get("/", getContacts);
 
-router.get("/:contactId", jwtMiddleware, getContact);
+router.get("/:contactId", getContact);
 
-router.post("/", jwtMiddleware, createContact);
+router.post("/", createContact);
 
-router.put("/:contactId", jwtMiddleware, updateContact);
+router.put("/:contactId", updateContact);
 
-router.delete("/:contactId", jwtMiddleware, deleteContact);
+router.delete("/:contactId", deleteContact);
 
-router.patch("/:contactId/favorite", jwtMiddleware, updateStatusContact);
+router.patch("/:contactId/favorite", updateStatusContact);
