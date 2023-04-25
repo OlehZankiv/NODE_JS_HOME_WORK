@@ -1,5 +1,5 @@
 import { responseMessageCreator } from "../../utils/error.js";
-import { validateFavoriteContact } from "../../utils/validations.js";
+import { validateFavoriteContact } from "../../validations/index.js";
 import { updateStatusContact as updateStatusContactService } from "../../services/contacts.js";
 
 export const updateStatusContact = async (req, res, next) => {

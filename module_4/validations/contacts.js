@@ -1,7 +1,7 @@
 import Joi from "joi";
+import { emailValidation } from "./utils.js";
 
 const nameValidation = Joi.string().uppercase().min(3).max(30).required();
-const emailValidation = Joi.string().email().required();
 const phoneValidation = Joi.string().min(8).max(20).required();
 
 const favoriteValidation = Joi.boolean();

@@ -1,5 +1,5 @@
 import { responseMessageCreator } from "../../utils/error.js";
-import { validateContact } from "../../utils/validations.js";
+import { validateContact } from "../../validations/index.js";
 import { addContact } from "../../services/contacts.js";
 
 export const createContact = async (req, res, next) => {
