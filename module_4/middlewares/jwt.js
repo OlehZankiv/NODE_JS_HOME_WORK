@@ -7,7 +7,7 @@ config();
 const secretKey = process.env.TOKEN_SECRET;
 
 export const jwtMiddleware = (req, res, next) => {
-  let token = req.headers.authorization;
+  let token = req.headers.authorization || "";
 
   token = token.startsWith("Bearer ") ? token.slice(7) : token;
 
@@ -19,7 +19,7 @@ export const jwtMiddleware = (req, res, next) => {
     else {
       const user = await getUserById(decoded.id);
 
-      if (!user)
+      if (!user || !user.token || user.token !== token)
         return res.status(401).json(responseMessageCreator("Not authorized"));
 
       req.user = user;

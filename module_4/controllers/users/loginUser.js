@@ -29,6 +29,9 @@ export const loginUser = async (req, res, next) => {
       expiresIn: "1w",
     });
 
+    user.token = token;
+    await user.save();
+
     res.status(200).json({ token, user });
   } catch (e) {
     console.error(e);
