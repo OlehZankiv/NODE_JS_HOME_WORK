@@ -3,6 +3,7 @@ import { jwtMiddleware } from "../middlewares/jwt.js";
 import {
   registerUser,
   loginUser,
+  getCurrentUser,
   logoutUser,
 } from "../controllers/users/index.js";
 
@@ -12,3 +13,4 @@ router.post("/register", registerUser);
 router.post("/login", loginUser);
 
 router.post("/logout", jwtMiddleware, logoutUser);
+router.get("/current", jwtMiddleware, getCurrentUser);
