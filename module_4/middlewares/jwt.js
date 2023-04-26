@@ -2,6 +2,7 @@ import { responseMessageCreator } from "../utils/error.js";
 import { getUserById } from "../services/users.js";
 import jwt from "jsonwebtoken";
 import { config } from "dotenv";
+
 config();
 
 const secretKey = process.env.TOKEN_SECRET;
@@ -16,15 +17,14 @@ export const jwtMiddleware = (req, res, next) => {
       return res
         .status(401)
         .json(responseMessageCreator(err.message + " " + token));
-    else {
-      const user = await getUserById(decoded.id);
 
-      if (!user || !user.token || user.token !== token)
-        return res.status(401).json(responseMessageCreator("Not authorized"));
+    const user = await getUserById(decoded.id);
 
-      req.user = user;
+    if (!user || !user.token || user.token !== token)
+      return res.status(401).json(responseMessageCreator("Not authorized"));
 
-      next();
-    }
+    req.user = user;
+
+    next();
   });
 };
