@@ -1,10 +1,6 @@
 import { app } from "./app.js";
 import mongoose from "mongoose";
-import { config } from "dotenv";
-config();
-
-const PORT = process.env.PORT || 3000;
-const DB_URI = process.env.DB_URI;
+import { DB_URI, PORT } from "./utils/constants.js";
 
 const runServer = () =>
   app.listen(PORT, () => {

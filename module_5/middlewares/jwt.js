@@ -1,18 +1,13 @@
 import { responseMessageCreator } from "../utils/error.js";
+import { TOKEN_SECRET } from "../utils/constants.js";
 import { getUserById } from "../services/users.js";
 import jwt from "jsonwebtoken";
-import { config } from "dotenv";
-
-config();
-
-const secretKey = process.env.TOKEN_SECRET;
 
 export const jwtMiddleware = (req, res, next) => {
   let token = req.headers.authorization || "";
-
   token = token.startsWith("Bearer ") ? token.slice(7) : token;
 
-  jwt.verify(token, secretKey, async (err, decoded) => {
+  jwt.verify(token, TOKEN_SECRET, async (err, decoded) => {
     if (err)
       return res
         .status(401)
