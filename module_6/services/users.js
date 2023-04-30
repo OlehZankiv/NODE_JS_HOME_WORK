@@ -12,3 +12,6 @@ export const registerUser = async (body) => {
 export const getUserByEmail = (email) => User.findOne({ email });
 
 export const getUserById = (id) => User.findById(id);
+
+export const getUserByVerificationToken = (verificationToken) =>
+  User.find({ verificationToken });

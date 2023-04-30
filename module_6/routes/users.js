@@ -7,6 +7,7 @@ import {
   uploadAvatar,
 } from "../controllers/users/index.js";
 import { jwtMiddleware, uploadAvatarMiddleware } from "../middlewares/index.js";
+import { verifyUser } from "../controllers/users/verifiedUser.js";
 
 export const router = express.Router();
 
@@ -16,3 +17,4 @@ router.post("/logout", jwtMiddleware, logoutUser);
 
 router.get("/current", jwtMiddleware, getCurrentUser);
 router.patch("/avatars", jwtMiddleware, uploadAvatarMiddleware, uploadAvatar);
+router.get("/verify/:verificationToken", verifyUser);
