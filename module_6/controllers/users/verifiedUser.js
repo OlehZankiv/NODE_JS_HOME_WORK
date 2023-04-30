@@ -14,10 +14,12 @@ export const verifyUser = async (req, res, next) => {
   try {
     const user = await getUserByVerificationToken(verificationToken);
 
-    if (!user) res.status(404).json(responseMessageCreator("User not found"));
+    if (!user)
+      return res.status(404).json(responseMessageCreator("User not found"));
 
     user.verificationToken = null;
     user.verify = true;
+
     await user.save();
 
     res.status(200).json(responseMessageCreator("Verification successful"));

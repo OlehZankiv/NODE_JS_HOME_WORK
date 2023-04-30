@@ -1,5 +1,5 @@
 import Joi from "joi";
-import { passwordValidation, emailValidation } from "./utils.js";
+import { emailValidation, passwordValidation } from "./utils.js";
 
 const userValidationSchema = Joi.object({
   email: emailValidation,
@@ -7,3 +7,4 @@ const userValidationSchema = Joi.object({
 }).unknown(true);
 
 export const validateUser = (user) => userValidationSchema.validate(user);
+export const validateEmail = (email) => emailValidation.validate(email);

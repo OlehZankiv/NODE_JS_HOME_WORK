@@ -1,2 +1,2 @@
 export { validateContact, validateFavoriteContact } from "./contacts.js";
-export { validateUser } from "./users.js";
+export { validateUser, validateEmail } from "./users.js";

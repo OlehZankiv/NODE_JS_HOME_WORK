@@ -21,6 +21,10 @@ export const loginUser = async (req, res, next) => {
       return res
         .status(401)
         .json(responseMessageCreator("Email or password is wrong"));
+    else if (!user.verify)
+      return res
+        .status(401)
+        .json(responseMessageCreator("Please verify your email before login"));
 
     const token = jwt.sign({ email: user.email, id: user._id }, TOKEN_SECRET, {
       expiresIn: "1w",
